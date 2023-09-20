@@ -11,9 +11,11 @@ namespace MyNotes.DataAccess.Repository
     public class UnitOfWork : IUnitOfWork
     {
         private ApplicationDbContext _db;
+        public ISheetRepository Sheet { get; private set; }
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
+            Sheet = new SheetRepository(_db);
         }
         public void Save()
         {
