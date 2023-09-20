@@ -1,0 +1,56 @@
+﻿@model Sheet
+
+<div class="card shadow border-0 mt-4" style="height: 800px">
+    <div class="card-header bg-primary m-lg-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">@(Model.Id != 0 ? "Update " : "Create ") Sheet</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input asp-for="Id" hidden />
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="mb-3 row p-1">
+                        <label asp-for="Name" class="p-0"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3 row p-1">
+                        <label asp-for="Text" class="p-0"></label>
+                        <textarea asp-for="Text" class="form-control border-0 shadow"></textarea>
+                    </div>
+
+                    <div class="row pt-2 p-4">
+                        <div class="col-6 col-md-3">
+                            <button type="submit" class="btn btn-primary form-control">Save</button>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <a asp-controller="Sheet" asp-action="Index" class="btn btn-outline-primary form-control">
+                                Back to list
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons  lists   table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough |  align lineheight | numlist bullist indent outdent',
+        });
+    </script>
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
