@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyNotes.Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,7 @@ namespace MyNotes.DataAccess.Data
         {
 
         }
+
+        public DbSet<Sheet> Sheets { get; set; }
     }
 }
