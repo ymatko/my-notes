@@ -20,8 +20,4 @@
     <ProjectReference Include="..\MyNotes.DataAccess\MyNotes.DataAccess.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\NewFolder\" />
-  </ItemGroup>
-
 </Project>
