@@ -1,6 +1,6 @@
 ﻿using MyNotes.DataAccess.Data;
 using MyNotes.DataAccess.Repository.IRepository;
-using MyNotes.Models.Models;
+using MyNotes.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

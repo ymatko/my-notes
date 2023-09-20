@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyNotes.DataAccess.Repository.IRepository;
-using MyNotes.Models.Models;
+using MyNotes.Models;
 
 namespace MyNotes.Controllers
 {

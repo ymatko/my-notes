@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyNotes.Models.Models
+namespace MyNotes.Models
 {
     public class Sheet
     {
