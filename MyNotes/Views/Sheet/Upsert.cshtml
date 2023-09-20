@@ -16,14 +16,13 @@
                 <div class="col-12">
                     <div class="mb-3 row p-1">
                         <label asp-for="Name" class="p-0"></label>
-                        <input asp-for="Name" class="form-control" />
+                        <input asp-for="Name" class="form-control border-0 shadow" />
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                     <div class="mb-3 row p-1">
                         <label asp-for="Text" class="p-0"></label>
-                        <textarea asp-for="Text" class="form-control border-0 shadow"></textarea>
+                        <textarea asp-for="Text" class="form-control border-0 shadow" style="height: 480px; resize: none"></textarea>
                     </div>
-
                     <div class="row pt-2 p-4">
                         <div class="col-6 col-md-3">
                             <button type="submit" class="btn btn-primary form-control">Save</button>
