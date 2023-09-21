@@ -18,6 +18,12 @@ namespace MyNotes.Controllers
             return View(objSheetList);
         }
 
+        public IActionResult SheetTableIndex()
+        {
+            List<Sheet> objSheetList = _unitOfWork.Sheet.GetAll().ToList();
+            return View(objSheetList);
+        }
+
         public IActionResult Upsert(int? id)
         {
             if (id == null || id == 0)
