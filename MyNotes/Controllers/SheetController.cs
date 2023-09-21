@@ -47,10 +47,13 @@ namespace MyNotes.Controllers
                 if (obj.Id == 0)
                 {
                     _unitOfWork.Sheet.Add(obj);
+                    TempData["success"] = "Sheet created successfully";
                 }
                 else
                 {
                     _unitOfWork.Sheet.Update(obj);
+                    TempData["success"] = "Sheet updated successfully";
+
                 }
                 _unitOfWork.Save();
                 return RedirectToAction("Index");
@@ -70,6 +73,7 @@ namespace MyNotes.Controllers
             }
             _unitOfWork.Sheet.Remove(obj);
             _unitOfWork.Save();
+            TempData["success"] = "Sheet deleted successfully";
             return RedirectToAction("Index");
         }
     }
