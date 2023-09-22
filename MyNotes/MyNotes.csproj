@@ -23,4 +23,8 @@
     <ProjectReference Include="..\MyNotes.DataAccess\MyNotes.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Identity\Data\" />
+  </ItemGroup>
+
 </Project>
