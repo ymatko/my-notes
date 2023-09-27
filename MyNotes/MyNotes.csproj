@@ -23,4 +23,9 @@
     <ProjectReference Include="..\MyNotes.DataAccess\MyNotes.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Controllers\" />
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>

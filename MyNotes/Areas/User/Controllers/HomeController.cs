@@ -1,9 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MyNotes.Models;
+using MyNotes.Utility;
 using System.Diagnostics;
 
-namespace MyNotes.Controllers
+namespace MyNotes.Areas.User.Controllers
 {
+    [Area("User")]
+    [Authorize(Roles = SD.Role_User)]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
