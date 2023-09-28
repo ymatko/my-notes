@@ -7,7 +7,6 @@ using System.Diagnostics;
 namespace MyNotes.Areas.User.Controllers
 {
     [Area("User")]
-    [Authorize(Roles = SD.Role_User)]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
