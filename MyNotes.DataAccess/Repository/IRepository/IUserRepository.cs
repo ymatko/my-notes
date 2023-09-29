@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace MyNotes.DataAccess.Repository.IRepository
 {
-    public interface IUnitOfWork
+    public interface IUserRepository : IRepository<IdentityUser>
     {
-        ISheetRepository Sheet { get; }
-        IUserRepository User { get; }
-        void Save();
+        public void Update(IdentityUser user);
     }
 }
