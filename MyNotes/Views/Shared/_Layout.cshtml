@@ -21,17 +21,17 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav me-auto">
-                        @if (User.IsInRole(SD.Role_User) || User.IsInRole(SD.Role_Admin))
+                        @if (User.IsInRole(SD.Role_User))
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="User" asp-controller="Sheet" asp-action="Index">Sheets</a>
                             </li>
-                            @if (User.IsInRole(SD.Role_Admin))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" asp-area="Admin" asp-controller="Sheet" asp-action="SheetTableIndex">Sheet Table</a>
-                                </li>
-                            }
+                        }
+                        @if (User.IsInRole(SD.Role_Admin))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="Admin" asp-controller="User" asp-action="Index">Users</a>
+                            </li>
                         }
                     </ul>
                     <partial name="_LoginPartial" />
