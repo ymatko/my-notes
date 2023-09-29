@@ -12,12 +12,10 @@ namespace MyNotes.DataAccess.Repository
     {
         private ApplicationDbContext _db;
         public ISheetRepository Sheet { get; private set; }
-        public IUserRepository User { get; private set; }
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
             Sheet = new SheetRepository(_db);
-            User = new UserRepository(_db);
         }
         public void Save()
         {

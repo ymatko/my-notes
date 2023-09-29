@@ -9,7 +9,6 @@ namespace MyNotes.DataAccess.Repository.IRepository
     public interface IUnitOfWork
     {
         ISheetRepository Sheet { get; }
-        IUserRepository User { get; }
         void Save();
     }
 }
