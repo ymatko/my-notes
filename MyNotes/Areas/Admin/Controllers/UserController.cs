@@ -17,8 +17,8 @@ namespace MyNotes.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            List<IdentityUser> users = _unitOfWork.User.GetAll().ToList();
-            return View(users);
+            List<IdentityUser> objUsertList = _unitOfWork.User.GetAll().ToList();
+            return View(objUsertList);
         }
     }
 }
