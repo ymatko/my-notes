@@ -1,0 +1,26 @@
+﻿@model List<ApplicationUser>
+﻿
+<div class="card shadow border-0 mt-4">
+	<div class="card-header bg-primary m-lg-0 py-3">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h2 class="text-white py-2">User List</h2>
+			</div>
+		</div>
+	</div>
+	<div class="card-body p-4">
+		<table id="tblData" class="table table-bordered table-striped" style="width:100%">
+			<thead>
+				@foreach(var obj in Model)
+				{
+					<tr>
+						<th>@obj.Id</th>
+						<th>@obj.Email</th>
+						<th></th>
+					</tr>
+				}
+			</thead>
+
+		</table>
+	</div>
+</div>
