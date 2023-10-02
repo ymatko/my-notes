@@ -22,11 +22,6 @@ namespace MyNotes.DataAccess.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Sheet>().HasData(
-                new Sheet { Id = 1, Name = "1", Text = "One"},
-                new Sheet { Id = 2, Name = "2", Text = "Two" },
-                new Sheet { Id = 3, Name = "3", Text = "Three" }
-                );
         }
     }
 }
