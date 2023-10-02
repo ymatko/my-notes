@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MyNotes.DataAccess.Repository.IRepository;
 using MyNotes.Models;
 using MyNotes.Utility;
+using System.Security.Claims;
 
 namespace MyNotes.Areas.User.Controllers
 {
@@ -33,7 +34,12 @@ namespace MyNotes.Areas.User.Controllers
             if (id == null || id == 0)
             {
                 //create
-                return View(new Sheet());
+                Sheet sheet = new() {
+                    ApplicationUserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value,
+                    Name = "",
+                    Text = ""
+                };
+                return View(sheet);
             }
             else
             {
