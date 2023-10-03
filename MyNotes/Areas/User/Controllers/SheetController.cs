@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyNotes.DataAccess.Repository.IRepository;
 using MyNotes.Models;
@@ -16,10 +17,10 @@ namespace MyNotes.Areas.User.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-
         public IActionResult Index()
         {
-            List<Sheet> objSheetList = _unitOfWork.Sheet.GetAll().ToList();
+            List<Sheet> objSheetList = _unitOfWork.Sheet.GetAll()
+                .Where(s => s.ApplicationUserId == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value).ToList();
             return View(objSheetList);
         }
 
@@ -30,7 +31,7 @@ namespace MyNotes.Areas.User.Controllers
         }
 
         public IActionResult Upsert(int? id)
-        {
+        {   
             if (id == null || id == 0)
             {
                 //create
@@ -45,7 +46,14 @@ namespace MyNotes.Areas.User.Controllers
             {
                 //update
                 Sheet? sheetFromDb = _unitOfWork.Sheet.Get(u => u.Id == id);
-                return View(sheetFromDb);
+                if (sheetFromDb.ApplicationUserId == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value)
+                {
+                    return View(sheetFromDb);
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
             }
         }
 
