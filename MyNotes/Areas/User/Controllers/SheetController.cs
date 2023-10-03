@@ -9,7 +9,7 @@ using System.Security.Claims;
 namespace MyNotes.Areas.User.Controllers
 {
     [Area("User")]
-    [Authorize(Roles = SD.Role_User)]
+    [Authorize]
     public class SheetController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
