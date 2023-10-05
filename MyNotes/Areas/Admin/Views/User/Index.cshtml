@@ -11,16 +11,26 @@
 	<div class="card-body p-4">
 		<table id="tblData" class="table table-bordered table-striped" style="width:100%">
 			<thead>
-				@foreach(var obj in Model)
+				<tr>
+					<th>Id</th>
+					<th>Email</th>
+					<th>Role</th>
+					<th>Sheets</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach(var obj in Model.OrderBy(u => u.Id))
 				{
 					<tr>
 						<th>@obj.Id</th>
 						<th>@obj.Email</th>
 						<th>@obj.Role</th>
+						<th>@obj.QuantityOfSheet</th>
 						<th></th>
 					</tr>
 				}
-			</thead>
+			</tbody>
 
 		</table>
 	</div>

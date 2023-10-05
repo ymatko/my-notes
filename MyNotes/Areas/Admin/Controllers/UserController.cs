@@ -26,6 +26,8 @@ namespace MyNotes.Areas.Admin.Controllers
 			{
 				var roleId = userRoles.FirstOrDefault(u => u.UserId == user.Id).RoleId;
 				user.Role = roles.FirstOrDefault(u => u.Id == roleId).Name;
+				user.QuantityOfSheet = _db.Sheets.Where(s => s.ApplicationUserId == user.Id).Count();
+
 			}
 
 			return View(applicationUsers);

@@ -12,5 +12,7 @@ namespace MyNotes.Models
 	{
 		[NotMapped]
 		public string Role { get; set; }
+		[NotMapped]
+		public int QuantityOfSheet { get; set; }
 	}
 }
