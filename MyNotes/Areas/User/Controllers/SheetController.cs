@@ -20,7 +20,7 @@ namespace MyNotes.Areas.User.Controllers
         public IActionResult Index()
         {
             List<Sheet> objSheetList = _unitOfWork.Sheet.GetAll()
-                .Where(s => s.ApplicationUserId == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value).ToList();
+                .Where(s => s.ApplicationUserId == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value && s.InTrash == true).ToList();
             return View(objSheetList);
         }
 
@@ -80,6 +80,18 @@ namespace MyNotes.Areas.User.Controllers
             {
                 return View(obj);
             }
+        }
+        public IActionResult InTrash(int? id)
+        {
+            Sheet? obj = _unitOfWork.Sheet.Get(u => u.Id == id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            obj.InTrash = true;
+            _unitOfWork.Sheet.Update(obj);
+            _unitOfWork.Save();
+            return RedirectToAction("Index");
         }
 
         public IActionResult Delete(int? id)

@@ -17,6 +17,7 @@ namespace MyNotes.Models
         [MaxLength(40)]
         public string? Name { get; set; }
         public string? Text { get; set; }
+        public bool InTrash { get; set; }
         public string ApplicationUserId { get; set; }
         [ForeignKey("ApplicationUserId")]
         [ValidateNever]
