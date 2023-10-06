@@ -20,7 +20,7 @@ namespace MyNotes.Areas.User.Controllers
         public IActionResult Index()
         {
             List<Sheet> objSheetList = _unitOfWork.Sheet.GetAll()
-                .Where(s => s.ApplicationUserId == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value && s.InTrash == true).ToList();
+                .Where(s => s.ApplicationUserId == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value && s.InTrash == false).ToList();
             return View(objSheetList);
         }
 
@@ -81,15 +81,18 @@ namespace MyNotes.Areas.User.Controllers
                 return View(obj);
             }
         }
-        public IActionResult InTrash(int? id)
+        public IActionResult Trash(int? id)
         {
-            Sheet? obj = _unitOfWork.Sheet.Get(u => u.Id == id);
-            if (obj == null)
+            if (id == 0 || id == null)
             {
-                return NotFound();
+                List<Sheet> objSheetList = _unitOfWork.Sheet.GetAll()
+                .Where(s => s.ApplicationUserId == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value && s.InTrash == true).ToList();
+                return View(objSheetList);
             }
+            Sheet? obj = _unitOfWork.Sheet.Get(u => u.Id == id);
             obj.InTrash = true;
             _unitOfWork.Sheet.Update(obj);
+            TempData["success"] = "Sheet added to trash";
             _unitOfWork.Save();
             return RedirectToAction("Index");
         }
