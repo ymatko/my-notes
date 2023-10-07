@@ -107,7 +107,20 @@ namespace MyNotes.Areas.User.Controllers
             _unitOfWork.Sheet.Remove(obj);
             _unitOfWork.Save();
             TempData["success"] = "Sheet deleted successfully";
-            return RedirectToAction("Index");
+            return RedirectToAction("Trash");
+        }
+
+        public IActionResult DeleteRange()
+        {
+            IEnumerable<Sheet> sheets = _unitOfWork.Sheet.GetAll().Where(s => s.ApplicationUserId == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value && s.InTrash == true);
+            if (sheets == null)
+            {
+                return NotFound();
+            }
+            _unitOfWork.Sheet.RemoveRange(sheets);
+            _unitOfWork.Save();
+            TempData["success"] = "Sheets deleted successfully";
+            return RedirectToAction("Trash");
         }
     }
 }
