@@ -30,18 +30,21 @@
             </div>
         </div>
     }
-    @* <div class="col-lg-3 col-sm-6">
-        <div class="row p-2 pd-8">
-            <div class="col-12 p-1">
-                <div class="card border-0 p-3 shadow  border-top border-5 border-primary rounded" style="width: 250px; height: 348px;">
-                    <div class="card-body text-center">
-                        <br /> <br />
-                        <a asp-controller="Sheet" asp-action="Upsert">
-                            <img src="~/images/Add_image.png" style="width: 182px;" />
-                        </a>
+    @if(Model.Count > 0)
+    {
+        <div class="col-lg-3 col-sm-6">
+            <div class="row p-2 pd-8">
+                <div class="col-12 p-1">
+                    <div class="card border-0 p-3 shadow  border-top border-5 border-primary rounded" style="width: 250px; height: 348px;">
+                        <div class="card-body text-center">
+                            <br /> <br />
+                            <a asp-controller="Sheet" asp-action="DeleteRange">
+                                <img src="~/images/Remove_image.png" style="width: 182px;" />
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div> *@
+    }
 </div>
