@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace MyNotes.DataAccess.Repository.IRepository
     {
         ISheetRepository Sheet { get; }
         IApplicationUserRepository ApplicationUser { get; }
+        IEnumerable<IdentityUser> Users { get; }
         void Save();
     }
 }
