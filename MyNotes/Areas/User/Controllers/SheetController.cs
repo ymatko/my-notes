@@ -105,6 +105,21 @@ namespace MyNotes.Areas.User.Controllers
             _unitOfWork.Save();
             return RedirectToAction("Index");
         }
+        public IActionResult OffTrash(int? id)
+        {
+            if (id == 0 || id == null)
+            {
+                List<Sheet> objSheetList = _unitOfWork.Sheet.GetAll()
+                .Where(s => s.ApplicationUserId == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value && s.InTrash == true).ToList();
+                return View(objSheetList);
+            }
+            Sheet? obj = _unitOfWork.Sheet.Get(u => u.Id == id);
+            obj.InTrash = false;
+            _unitOfWork.Sheet.Update(obj);
+            TempData["success"] = "Sheet was deleted from trash";
+            _unitOfWork.Save();
+            return RedirectToAction("Trash");
+        }
 
         public IActionResult Delete(int? id)
         {
