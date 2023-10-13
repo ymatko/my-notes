@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyNotes.DataAccess.Repository.IRepository;
 using MyNotes.Models;
+using MyNotes.Models.ViewModels;
 using MyNotes.Utility;
 using System.Security.Claims;
 
@@ -19,9 +20,17 @@ namespace MyNotes.Areas.User.Controllers
         }
         public IActionResult Index()
         {
-            List<Sheet> objSheetList = _unitOfWork.Sheet.GetAll()
+            List<Sheet> objUserSheetList = _unitOfWork.Sheet.GetAll()
                 .Where(s => s.ApplicationUserId == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value && s.InTrash == false).ToList();
-            return View(objSheetList);
+            List<Sheet> objAdminSheetList = _unitOfWork.Sheet.GetAll()
+                .Where(s => s.ApplicationUserId == "a5ea1899-c2cc-46d7-9aca-18faf3fe695d" && s.InTrash == false).ToList();
+
+            SheetVM compositeModel = new SheetVM()
+            {
+                UserSheets = objUserSheetList,
+                AdminSheets = objAdminSheetList
+            };
+            return View(compositeModel);
         }
 
         public IActionResult SheetTableIndex()
