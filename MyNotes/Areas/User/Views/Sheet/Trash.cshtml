@@ -9,10 +9,11 @@
                     <div class="card border-0 p-0 pb-2 shadow  border-top border-5 border-primary rounded" style="width: 250px; height: 348px;">
                         <div class="card-body" style="width: 250px; height: 348px;">
                             <div style="overflow: hidden; width: 220px; height: 30px;">
-                                <h5>@obj.Name</h5>
+                                <p style="font-weight: bold; font-size: 18px;">@obj.Name</p>
                             </div>
-
-                            <p class="form-text for" style="overflow: hidden; width: 200px; height: 210px;">@obj.Text</p>
+                            <div style="overflow: hidden; width: 200px; height: 210px;">
+                                <p class="form-text for" style="overflow: hidden; ">@Html.Raw(obj.Text)</p>
+                            </div>
                         </div>
 
                         <div style="text-align: right;">
