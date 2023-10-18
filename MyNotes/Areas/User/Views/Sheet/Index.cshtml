@@ -1,70 +1,195 @@
 ﻿@model SheetVM
 
-<div class="row pb-3">
-    @foreach (var obj in Model.UserSheets)
-    {
-        <div class="col-lg-3 col-sm-6">
-            <div class="row p-2 pd-8">
-                <div class="col-12 p-1">
-                    <div class="card border-0 p-0 pb-2 shadow  border-top border-5 border-primary rounded" style="width: 250px; height: 348px;">
-                        <div class="card-body" style="width: 250px; height: 348px;">
-                            <div style="overflow: hidden; width: 220px; height: 30px;">
-                                <p style="font-weight: bold; font-size: 18px;">@obj.Name</p>
-                            </div>
-                            <div style="overflow: hidden; width: 200px; height: 210px;">
-                                <p class="form-text for" style="overflow: hidden; ">@Html.Raw(obj.Text)</p>
+
+<div class="row">
+    <div class="col-3">
+        <div class="nav flex-column nav-pills text-center"
+             id="v-pills-tab"
+             role="tablist"
+             aria-orientation="vertical">
+            <ul class="nav flex-column nav-tabs" id="myTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="user-sheets-tab" data-toggle="tab" href="#user-sheets" role="tab" aria-controls="user-sheets" aria-selected="true">Пользовательские</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="admin-sheets-tab" data-toggle="tab" href="#admin-sheets" role="tab" aria-controls="admin-sheets" aria-selected="false">Администраторские</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="admin-sheets-tab" data-toggle="tab" href="#admin-sheets" role="tab" aria-controls="admin-sheets" aria-selected="false">Администраторские</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="admin-sheets-tab" data-toggle="tab" href="#admin-sheets" role="tab" aria-controls="admin-sheets" aria-selected="false">Администраторские</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="admin-sheets-tab" data-toggle="tab" href="#admin-sheets" role="tab" aria-controls="admin-sheets" aria-selected="false">Администраторские</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-9">
+        <div class="container">
+            <div class="row pb-3">
+                @foreach (var obj in Model.UserSheets)
+                {
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="row p-2 pd-8">
+                            <div class="col-12 p-1">
+                                <div class="card border-0 p-0 pb-2 shadow  border-top border-5 border-primary rounded" style="width: 250px; height: 348px;">
+                                    <div class="card-body" style="width: 250px; height: 348px;">
+                                        <div style="overflow: hidden; width: 220px; height: 30px;">
+                                            <p style="font-weight: bold; font-size: 18px;">@obj.Name</p>
+                                        </div>
+                                        <div style="overflow: hidden; width: 200px; height: 210px;">
+                                            <p class="form-text for" style="overflow: hidden; ">@Html.Raw(obj.Text)</p>
+                                        </div>
+                                    </div>
+
+                                    <div style="text-align: right;">
+                                        <div class="w-75 btn" style="text-align: right;">
+                                            <a asp-controller="Sheet" asp-action="Upsert" asp-route-id="@obj.Id" class="btn btn-primary">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a>
+                                            <a asp-controller="Sheet" asp-action="Trash" asp-route-id="@obj.Id" class="btn btn-primary">
+                                                <i class="bi bi-trash3"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        <div style="text-align: right;">
-                            <div class="w-75 btn" style="text-align: right;">
-                                <a asp-controller="Sheet" asp-action="Upsert" asp-route-id="@obj.Id" class="btn btn-primary">
-                                    <i class="bi bi-pencil-square"></i>
-                                </a>
-                                <a asp-controller="Sheet" asp-action="Trash" asp-route-id="@obj.Id" class="btn btn-primary">
-                                    <i class="bi bi-trash3"></i>
-                                </a>
+                    </div>
+                }
+                @if (User.IsInRole(SD.Role_User))
+                {
+                    @foreach (var obj in Model.AdminSheets)
+                    {
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="row p-2 pd-8">
+                                <div class="col-12 p-1">
+                                    <div class="card border-0 p-0 pb-2 shadow  border-top border-5 border-secondary rounded" style="width: 250px; height: 348px;">
+                                        <div class="card-body" style="width: 250px; height: 368px;">
+                                            <div style="overflow: hidden; width: 220px; height: 30px;">
+                                                <p style="font-weight: bold; font-size: 18px;">@obj.Name</p>
+                                            </div>
+                                            <div style="overflow: hidden; width: 200px; height: 260px;">
+                                                <p class="form-text for" style="overflow: hidden; ">@Html.Raw(obj.Text)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                <div class="col-lg-3 col-sm-6">
+                    <div class="row p-2 pd-8">
+                        <div class="col-12 p-1">
+                            <div class="card border-0 p-3 shadow  border-top border-5 border-primary rounded" style="width: 250px; height: 348px;">
+                                <div class="card-body text-center">
+                                    <br /> <br />
+                                    <a asp-controller="Sheet" asp-action="Upsert">
+                                        <img src="~/images/Add_image.png" style="width: 182px;" />
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }
-    @if (User.IsInRole(SD.Role_User))
-    {
-        @foreach (var obj in Model.AdminSheets)
-        {
+    </div>
+</div>
+
+
+@* <div>
+    <div class ="nav flex-column nav-pills text-center">
+        <!-- Вкладки -->
+        <ul class="nav flex-column nav-tabs" id="myTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="user-sheets-tab" data-toggle="tab" href="#user-sheets" role="tab" aria-controls="user-sheets" aria-selected="true">Пользовательские</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="admin-sheets-tab" data-toggle="tab" href="#admin-sheets" role="tab" aria-controls="admin-sheets" aria-selected="false">Администраторские</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="admin-sheets-tab" data-toggle="tab" href="#admin-sheets" role="tab" aria-controls="admin-sheets" aria-selected="false">Администраторские</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="admin-sheets-tab" data-toggle="tab" href="#admin-sheets" role="tab" aria-controls="admin-sheets" aria-selected="false">Администраторские</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="admin-sheets-tab" data-toggle="tab" href="#admin-sheets" role="tab" aria-controls="admin-sheets" aria-selected="false">Администраторские</a>
+            </li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="row pb-3">
+            @foreach (var obj in Model.UserSheets)
+            {
+                <div class="col-lg-3 col-sm-6">
+                    <div class="row p-2 pd-8">
+                        <div class="col-12 p-1">
+                            <div class="card border-0 p-0 pb-2 shadow  border-top border-5 border-primary rounded" style="width: 250px; height: 348px;">
+                                <div class="card-body" style="width: 250px; height: 348px;">
+                                    <div style="overflow: hidden; width: 220px; height: 30px;">
+                                        <p style="font-weight: bold; font-size: 18px;">@obj.Name</p>
+                                    </div>
+                                    <div style="overflow: hidden; width: 200px; height: 210px;">
+                                        <p class="form-text for" style="overflow: hidden; ">@Html.Raw(obj.Text)</p>
+                                    </div>
+                                </div>
+
+                                <div style="text-align: right;">
+                                    <div class="w-75 btn" style="text-align: right;">
+                                        <a asp-controller="Sheet" asp-action="Upsert" asp-route-id="@obj.Id" class="btn btn-primary">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+                                        <a asp-controller="Sheet" asp-action="Trash" asp-route-id="@obj.Id" class="btn btn-primary">
+                                            <i class="bi bi-trash3"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            @if (User.IsInRole(SD.Role_User))
+            {
+                @foreach (var obj in Model.AdminSheets)
+                {
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="row p-2 pd-8">
+                            <div class="col-12 p-1">
+                                <div class="card border-0 p-0 pb-2 shadow  border-top border-5 border-secondary rounded" style="width: 250px; height: 348px;">
+                                    <div class="card-body" style="width: 250px; height: 368px;">
+                                        <div style="overflow: hidden; width: 220px; height: 30px;">
+                                            <p style="font-weight: bold; font-size: 18px;">@obj.Name</p>
+                                        </div>
+                                        <div style="overflow: hidden; width: 200px; height: 260px;">
+                                            <p class="form-text for" style="overflow: hidden; ">@Html.Raw(obj.Text)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
             <div class="col-lg-3 col-sm-6">
                 <div class="row p-2 pd-8">
                     <div class="col-12 p-1">
-                        <div class="card border-0 p-0 pb-2 shadow  border-top border-5 border-secondary rounded" style="width: 250px; height: 348px;">
-                            <div class="card-body" style="width: 250px; height: 368px;">
-                                <div style="overflow: hidden; width: 220px; height: 30px;">
-                                    <p style="font-weight: bold; font-size: 18px;">@obj.Name</p>
-                                </div>
-                                <div style="overflow: hidden; width: 200px; height: 260px;">
-                                    <p class="form-text for" style="overflow: hidden; ">@Html.Raw(obj.Text)</p>
-                                </div>
+                        <div class="card border-0 p-3 shadow  border-top border-5 border-primary rounded" style="width: 250px; height: 348px;">
+                            <div class="card-body text-center">
+                                <br /> <br />
+                                <a asp-controller="Sheet" asp-action="Upsert">
+                                    <img src="~/images/Add_image.png" style="width: 182px;" />
+                                </a>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        }
-    }
-    <div class="col-lg-3 col-sm-6">
-        <div class="row p-2 pd-8">
-            <div class="col-12 p-1">
-                <div class="card border-0 p-3 shadow  border-top border-5 border-primary rounded" style="width: 250px; height: 348px;">
-                    <div class="card-body text-center">
-                        <br /> <br />
-                        <a asp-controller="Sheet" asp-action="Upsert">
-                            <img src="~/images/Add_image.png" style="width: 182px;" />
-                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+ *@
