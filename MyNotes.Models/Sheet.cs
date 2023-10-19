@@ -22,5 +22,8 @@ namespace MyNotes.Models
         [ForeignKey("ApplicationUserId")]
         [ValidateNever]
         public ApplicationUser ApplicationUser { get; set; }
+        [ForeignKey("Tab")]
+        public int TabId { get; set; }
+        public Tab Tab { get; set; }
     }
 }
