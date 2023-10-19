@@ -23,7 +23,7 @@ namespace MyNotes.Areas.User.Controllers
             List<Sheet> objUserSheetList = _unitOfWork.Sheet.GetAll()
                 .Where(s => s.ApplicationUserId == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value && s.InTrash == false).ToList();
             List<Sheet> objAdminSheetList = _unitOfWork.Sheet.GetAll()
-                .Where(s => s.ApplicationUserId == "a5ea1899-c2cc-46d7-9aca-18faf3fe695d" && s.InTrash == false).ToList();
+                .Where(s => s.ApplicationUserId == "66b75e85-857a-47b6-9fd7-1312a9d88671" && s.InTrash == false).ToList();
 
             SheetVM compositeModel = new SheetVM()
             {
@@ -31,12 +31,6 @@ namespace MyNotes.Areas.User.Controllers
                 AdminSheets = objAdminSheetList
             };
             return View(compositeModel);
-        }
-
-        public IActionResult SheetTableIndex()
-        {
-            List<Sheet> objSheetList = _unitOfWork.Sheet.GetAll().ToList();
-            return View(objSheetList);
         }
 
         public IActionResult Upsert(int? id)
@@ -47,7 +41,7 @@ namespace MyNotes.Areas.User.Controllers
                 Sheet sheet = new() {
                     ApplicationUserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value,
                     Name = "",
-                    Text = "",
+                    Text = ""
                 };
                 return View(sheet);
             }

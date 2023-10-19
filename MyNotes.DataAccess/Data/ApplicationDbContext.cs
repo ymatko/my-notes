@@ -24,7 +24,7 @@ namespace MyNotes.DataAccess.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Tab>().HasData(
-                new Tab { Id = 1, Name = "Main"}
+                new Tab { Id = 1, Name = "Main", SheetId = 1}
                 );
         }
     }
