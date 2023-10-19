@@ -23,6 +23,9 @@ namespace MyNotes.DataAccess.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Tab>().HasData(
+                new Tab { Id = 1, Name = "Main"}
+                );
         }
     }
 }
