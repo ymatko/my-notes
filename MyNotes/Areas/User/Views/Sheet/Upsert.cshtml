@@ -1,7 +1,14 @@
 ﻿@model Sheet
 
-<div class="card shadow border-0 mt-4" style="height: 800px">
-    <div class="card-header bg-primary m-lg-0 py-3">
+<div class="row">
+    <div class="col-3">
+        <div>
+        </div>
+    </div>
+    <div class="col-9">
+        <div class="container">
+            <div class="card shadow border-0 mt-4" style="height: 800px">
+                <div class="card-header bg-primary m-lg-0 py-3">
         <div class="row">
             <div class="col-12 text-center">
                 <h2 class="text-white py-2">@(Model.Id != 0 ? "Update " : "Create ")Sheet</h2>
@@ -20,7 +27,7 @@
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                     <div class="py-2 col-12">
-                        <label asp-for="Text" class="ms-2 text-muted"></label>
+                        <label asp-for="Text" class="ms-3 text-muted"></label>
                         <textarea asp-for="Text" class="form-control border-0 shadow" style="height: 520px; resize: none"></textarea>
                     </div>
                     <div class="row pt-2 p-4">
@@ -36,9 +43,12 @@
                 </div>
             </div>
         </form>
-
     </div>
 </div>
+        </div>
+    </div>
+</div>
+
 
 
 @section Scripts{
