@@ -19,6 +19,7 @@ namespace MyNotes.DataAccess.Data
 
         public DbSet<Sheet> Sheets { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Tab> Tabs { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
