@@ -12,6 +12,7 @@ namespace MyNotes.DataAccess.Repository.IRepository
         ISheetRepository Sheet { get; }
         IApplicationUserRepository ApplicationUser { get; }
         IEnumerable<IdentityUser> Users { get; }
+        ITabRepository Tab { get; }
         void Save();
     }
 }
