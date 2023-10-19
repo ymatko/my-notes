@@ -48,7 +48,6 @@ namespace MyNotes.Areas.User.Controllers
                     ApplicationUserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value,
                     Name = "",
                     Text = "",
-                    TabId = 1
                 };
                 return View(sheet);
             }

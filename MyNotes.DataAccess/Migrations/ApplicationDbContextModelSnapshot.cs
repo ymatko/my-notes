@@ -248,17 +248,12 @@ namespace MyNotes.DataAccess.Migrations
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
 
-                    b.Property<int>("TabId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Text")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("TabId");
 
                     b.ToTable("Sheets");
                 });
@@ -271,7 +266,17 @@ namespace MyNotes.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<int>("SheetId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("SheetId");
 
                     b.ToTable("Tabs");
                 });
@@ -342,20 +347,23 @@ namespace MyNotes.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MyNotes.Models.Tab", "Tab")
-                        .WithMany("Sheets")
-                        .HasForeignKey("TabId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("ApplicationUser");
-
-                    b.Navigation("Tab");
                 });
 
             modelBuilder.Entity("MyNotes.Models.Tab", b =>
                 {
-                    b.Navigation("Sheets");
+                    b.HasOne("MyNotes.Models.Sheet", "Sheet")
+                        .WithMany("Tabs")
+                        .HasForeignKey("SheetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Sheet");
+                });
+
+            modelBuilder.Entity("MyNotes.Models.Sheet", b =>
+                {
+                    b.Navigation("Tabs");
                 });
 #pragma warning restore 612, 618
         }
