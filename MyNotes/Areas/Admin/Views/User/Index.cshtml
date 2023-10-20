@@ -1,37 +1,39 @@
 ﻿@model List<ApplicationUser>
 ﻿
-<div class="card shadow border-0 mt-4">
-	<div class="card-header bg-primary m-lg-0 py-3">
-		<div class="row">
-			<div class="col-12 text-center">
-				<h2 class="text-white py-2">User List</h2>
+<div class="container">
+	<div class="card shadow border-0 mt-4">
+		<div class="card-header bg-primary m-lg-0 py-3">
+			<div class="row">
+				<div class="col-12 text-center">
+					<h2 class="text-white py-2">User List</h2>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="card-body p-4">
-		<table id="tblData" class="table table-bordered table-striped" style="width:100%">
-			<thead>
-				<tr>
-					<th>Id</th>
-					<th>Email</th>
-					<th>Role</th>
-					<th>Sheets</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach(var obj in Model.OrderBy(u => u.Id))
-				{
+		<div class="card-body p-4">
+			<table id="tblData" class="table table-bordered table-striped" style="width:100%">
+				<thead>
 					<tr>
-						<th>@obj.Id</th>
-						<th>@obj.Email</th>
-						<th>@obj.Role</th>
-						<th>@obj.QuantityOfSheet</th>
+						<th>Id</th>
+						<th>Email</th>
+						<th>Role</th>
+						<th>Sheets</th>
 						<th></th>
 					</tr>
-				}
-			</tbody>
+				</thead>
+				<tbody>
+					@foreach (var obj in Model.OrderBy(u => u.Id))
+					{
+						<tr>
+							<th>@obj.Id</th>
+							<th>@obj.Email</th>
+							<th>@obj.Role</th>
+							<th>@obj.QuantityOfSheet</th>
+							<th></th>
+						</tr>
+					}
+				</tbody>
 
-		</table>
+			</table>
+		</div>
 	</div>
 </div>
