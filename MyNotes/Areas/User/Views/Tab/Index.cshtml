@@ -1,4 +1,4 @@
-﻿@model List<Tab>
+﻿@model TabVM
 
 <div class="row">
     <div class="col-3">
@@ -26,6 +26,6 @@
         </div>
     </div>
     <div class="col-9">
-        @Html.RenderPartialAsync("/Sheet/Index")
+        @Html.RenderPartialAsync("/Areas/User/Views/Sheet/Index.cshtml", Model.Sheets)
     </div>
 </div>
